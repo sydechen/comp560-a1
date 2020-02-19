@@ -12,5 +12,5 @@ Replace the items in <> with actual paths to main.py and your input file. It is 
 
 Executing will print the backtracking search solution followed by attempting the local search solution.
 
-If on Windows and python is not added to PATH, replace the `python` command with the path to your python interpreter eg. 
+If your are on Windows and python is not added to PATH, replace the `python` command with the path to your python interpreter eg. 
 `$ C:\Users\UserName\AppData\Local\Programs\Python\Python38\python.exe main.py <path\to\inputfile.txt>`
