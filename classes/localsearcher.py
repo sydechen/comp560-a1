@@ -36,10 +36,11 @@ class LocalSearcher:
         for node in csp.nodes:
             curr[node.name] = random.choice(node.pColors)
 
-        #set time limit to one minute from now
+        #set time limit to one minute
         limit = time.time() + 60
         changes = 0
-        #loop up to time limit
+        loops = 0
+
         while time.time() < limit:
             
             #if current assignment is a solution, return it
@@ -47,10 +48,19 @@ class LocalSearcher:
                 print("Local Search Steps: ", changes)
                 return curr
 
+            #if we loop 100x the number of nodes, reshuffle initial assignment to prevent getting stuck
+            if loops == len(csp.nodes) * 100:
+                loops = 0
+                for node in csp.nodes:
+                    curr[node.name] = random.choice(node.pColors)
+
             #choose a random node and the value that minimizes conflicts
             node = random.choice(csp.nodes)
             color = self.pickColor(node, curr)
+
+            #modify assignment if node wasn't already that color
             if curr[node.name] != color:
                 curr[node.name] = color
                 changes += 1
+            loops += 1
         return None

@@ -13,7 +13,7 @@ edges = []
 nodeSection = False
 edgeSection = False
 
-#loop through input file, saving info based on section
+#parse input
 for line in fileinput.input():
 
     if line == '\n':
@@ -27,9 +27,12 @@ for line in fileinput.input():
         colors.append(line.strip())
     elif not edgeSection:
         name = line.strip()
+
+        #create node object
         nodes.append(Node(name,list(colors)))
     else:
         names = line.strip().split()
+
         node1 = next(node for node in nodes if node.name == names[0])
         node2 = next(node for node in nodes if node.name == names[1])
 
@@ -42,12 +45,16 @@ for line in fileinput.input():
 csp = CSP(nodes, edges)
 csp2 = copy.deepcopy(csp)
 assignment = {}
+
+#Backtrack for solution
 search = Backtracker()
 bSol = search.backtrack(assignment, csp, 0)
 print("Solution: ")
 for node,color in bSol.items():
     print(node + " : " + color)
 
+
+#Local Search for solution
 print("\nLocal Search Start...")
 search = LocalSearcher()
 lSol = search.localSearch(csp2)
