@@ -44,26 +44,27 @@ class Edge:
         self.node1 = node1
         self.node2 = node2
 
+
+#finds most constrained node. If there are multiple, chooses most constraining out of those
 def pickNode(nodes, assignment):
-    #find most constrained node. If there are multiple, choose most constraining out of those
     unassigned = [node for node in nodes if node.name not in assignment]
-    mostConstrained = unassigned[0]
+    best = unassigned[0]
     for node in unassigned[1:]:
-        if len(node.pColors) < len(mostConstrained.pColors):
-            mostConstrained = node
-        elif len(node.pColors) == len(mostConstrained.pColors):
+        if len(node.pColors) < len(best.pColors):
+            best = node
+        elif len(node.pColors) == len(best.pColors):
             nodeOpenNeighbors = 0
             mostOpenNeighbors = 0
             for neighbor in node.neighbors:
                 if neighbor in unassigned:
                     nodeOpenNeighbors += 1
-            for neighbor in mostConstrained.neighbors:
+            for neighbor in best.neighbors:
                 if neighbor in unassigned:
                     mostOpenNeighbors += 1
             if nodeOpenNeighbors > mostOpenNeighbors:
-                mostConstrained = node
+                best = node
 
-    return mostConstrained
+    return best
 
 def pickColor(node):
     #order by color that least constrains adjacent nodes
@@ -154,4 +155,7 @@ for line in fileinput.input():
 csp = CSP(nodes, edges)
 assignment = {}
 sol = backtrack(assignment, csp)
-print(sol)
+print("Backtracking Search Solution: ")
+for node,color in sol.items():
+    print(node + " : " + color)
+
