@@ -1,8 +1,7 @@
 # comp560-a1
 Written in python 3.8
 
-How to run:
-In terminal, use command: 
+To run in terminal, use command: 
 
 $ python "path-to-main.py" "path-to-input-file.txt"
 
