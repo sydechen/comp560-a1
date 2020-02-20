@@ -95,7 +95,7 @@ class Backtracker:
 
     def backtrack(self, assignment, csp, count):
 
-        #if assignment is finished, return assignment
+        #if assignment is finished, return it
         if len(csp.nodes) == len(assignment):
             print("Backtracking Search Steps: ", count)
             return assignment

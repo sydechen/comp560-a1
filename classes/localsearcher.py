@@ -48,8 +48,8 @@ class LocalSearcher:
                 print("Local Search Steps: ", changes)
                 return curr
 
-            #if we loop 100x the number of nodes, reshuffle initial assignment to prevent getting stuck
-            if loops == len(csp.nodes) * 100:
+            #if we loop 50x the number of nodes, reshuffle initial assignment to prevent getting stuck
+            if loops == len(csp.nodes) * 50:
                 loops = 0
                 for node in csp.nodes:
                     curr[node.name] = random.choice(node.pColors)
