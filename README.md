@@ -1,5 +1,5 @@
-# comp560-a1
-Runs backtracking search and local search to find map coloring solution
+# Constraint Satisfaction: Map Coloring
+Runs backtracking search and local search to find map coloring solution using Python 3.8
 
 ## Run
 To run in terminal, use command: 
